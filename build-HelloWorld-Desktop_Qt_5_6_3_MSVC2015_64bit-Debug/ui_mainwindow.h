@@ -14,8 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -25,28 +28,49 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
+    QAction *action_ffnen;
     QWidget *centralWidget;
+    QLabel *imageLabel;
+    QSlider *horizontalSlider;
+    QMenuBar *menuBar;
+    QMenu *menuDatei;
+    QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(400, 300);
+        MainWindow->resize(495, 334);
+        action_ffnen = new QAction(MainWindow);
+        action_ffnen->setObjectName(QStringLiteral("action_ffnen"));
+        centralWidget = new QWidget(MainWindow);
+        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        imageLabel = new QLabel(centralWidget);
+        imageLabel->setObjectName(QStringLiteral("imageLabel"));
+        imageLabel->setGeometry(QRect(30, 20, 431, 231));
+        horizontalSlider = new QSlider(centralWidget);
+        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
+        horizontalSlider->setGeometry(QRect(50, 270, 160, 16));
+        horizontalSlider->setMinimum(-100);
+        horizontalSlider->setMaximum(100);
+        horizontalSlider->setOrientation(Qt::Horizontal);
+        MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 495, 17));
+        menuDatei = new QMenu(menuBar);
+        menuDatei->setObjectName(QStringLiteral("menuDatei"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(mainToolBar);
-        centralWidget = new QWidget(MainWindow);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        MainWindow->setCentralWidget(centralWidget);
+        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+
+        menuBar->addAction(menuDatei->menuAction());
+        menuDatei->addAction(action_ffnen);
 
         retranslateUi(MainWindow);
 
@@ -56,6 +80,9 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        action_ffnen->setText(QApplication::translate("MainWindow", "\303\226ffnen ...", Q_NULLPTR));
+        imageLabel->setText(QString());
+        menuDatei->setTitle(QApplication::translate("MainWindow", "Datei", Q_NULLPTR));
     } // retranslateUi
 
 };
