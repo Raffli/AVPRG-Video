@@ -29,6 +29,7 @@ class Ui_MainWindow
 {
 public:
     QAction *action_ffnen;
+    QAction *actionBuntesRaster;
     QWidget *centralWidget;
     QLabel *imageLabel;
     QSlider *horizontalSlider;
@@ -44,6 +45,8 @@ public:
         MainWindow->resize(495, 334);
         action_ffnen = new QAction(MainWindow);
         action_ffnen->setObjectName(QStringLiteral("action_ffnen"));
+        actionBuntesRaster = new QAction(MainWindow);
+        actionBuntesRaster->setObjectName(QStringLiteral("actionBuntesRaster"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         imageLabel = new QLabel(centralWidget);
@@ -58,7 +61,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 495, 17));
+        menuBar->setGeometry(QRect(0, 0, 495, 21));
         menuDatei = new QMenu(menuBar);
         menuDatei->setObjectName(QStringLiteral("menuDatei"));
         MainWindow->setMenuBar(menuBar);
@@ -71,6 +74,8 @@ public:
 
         menuBar->addAction(menuDatei->menuAction());
         menuDatei->addAction(action_ffnen);
+        menuDatei->addSeparator();
+        menuDatei->addAction(actionBuntesRaster);
 
         retranslateUi(MainWindow);
 
@@ -81,6 +86,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         action_ffnen->setText(QApplication::translate("MainWindow", "\303\226ffnen ...", Q_NULLPTR));
+        actionBuntesRaster->setText(QApplication::translate("MainWindow", "BuntesRaster", Q_NULLPTR));
         imageLabel->setText(QString());
         menuDatei->setTitle(QApplication::translate("MainWindow", "Datei", Q_NULLPTR));
     } // retranslateUi

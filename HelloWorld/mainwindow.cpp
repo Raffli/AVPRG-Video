@@ -50,6 +50,7 @@ void MainWindow::on_action_ffnen_triggered()
     showImage(destinationImage);
 }
 
+
 void MainWindow::process(){
     for(int x = 0; x < sourceImage.cols; x++){
         for(int y = 0; y < sourceImage.rows; y++){
@@ -89,4 +90,19 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
         }
     }
     showImage(destinationImage);
+}
+
+void MainWindow::on_actionBuntesRaster_triggered()
+{
+    Mat image;
+    for(int x = 0; x < 9; x++){
+        for(int y = 0; y < 9; y++){
+            rectangle (image,
+                       Rect( x*4,y*4,(x+1)*4,(y+1)*4),
+                       Scalar(qrand() % 255,qrand() % 255,qrand() % 255),
+                       1,
+                       LINE_8);
+        }
+    }
+    showImage(image);
 }

@@ -53,7 +53,7 @@
      <x>0</x>
      <y>0</y>
      <width>495</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
@@ -61,6 +61,8 @@
      <string>Datei</string>
     </property>
     <addaction name="action_ffnen"/>
+    <addaction name="separator"/>
+    <addaction name="actionBuntesRaster"/>
    </widget>
    <addaction name="menuDatei"/>
   </widget>
@@ -76,6 +78,11 @@
   <action name="action_ffnen">
    <property name="text">
     <string>Öffnen ...</string>
+   </property>
+  </action>
+  <action name="actionBuntesRaster">
+   <property name="text">
+    <string>BuntesRaster</string>
    </property>
   </action>
  </widget>
