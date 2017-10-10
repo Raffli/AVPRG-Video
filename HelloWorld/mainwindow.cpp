@@ -94,14 +94,14 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
 
 void MainWindow::on_actionBuntesRaster_triggered()
 {
-    Mat image;
+    Mat image(400,400,CV_8SC3);
     for(int x = 0; x < 9; x++){
         for(int y = 0; y < 9; y++){
             rectangle (image,
                        Rect( x*4,y*4,(x+1)*4,(y+1)*4),
                        Scalar(qrand() % 255,qrand() % 255,qrand() % 255),
-                       1,
-                       LINE_8);
+                       CV_FILLED,
+                       1);
         }
     }
     showImage(image);
